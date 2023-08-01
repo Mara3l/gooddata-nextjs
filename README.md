@@ -1,14 +1,12 @@
 # GoodData with Next.js
 
-The repository contains demo of GoodData with Next.js. If you need more information, please check the documentation about [GoodData UI SDK](https://www.gooddata.com/docs/gooddata-ui/latest/).
+The repository contains demo of GoodData with Next.js. The [result](#result) is visualization from GoodData rendered in Next.js environment.
 
-## How to Run GoodData in Next.js
+If you have any questions, feel free to ask me on [GoodData slack](https://www.gooddata.com/slack/) (@Patrik Braborec). Also, for more information you can check [GoodData UI SDK](https://www.gooddata.com/docs/gooddata-ui/latest/).
 
-The following steps describe basic steps on how to integrate GoodData with Next.js.
+## How to Render GoodData visualization in Next.js
 
 ### Step 1: Install all necessary dependencies
-
-If you want to run GoodData in Next.js, you need to install all the following dependencies.
 
 The following packages deal with GoodData backend:
 
@@ -22,7 +20,7 @@ The following package contains *all* components of GoodData UI SDK:
 npm i @gooddata/sdk-ui-all
 ```
 
-*Tip: If you do not need to install all components, you can select only those you need. More info is in the [docs](https://www.gooddata.com/docs/gooddata-ui/latest/learn/integrate_and_authenticate/cn_and_cloud_integration/#IntegrateCNandCloudintoanExistingApplication-Step1Installthenecessarydependencies).*
+*Tip: If you do not need to install all components, you can select only those you need. More info is in the [documentation](https://www.gooddata.com/docs/gooddata-ui/latest/learn/integrate_and_authenticate/cn_and_cloud_integration/#IntegrateCNandCloudintoanExistingApplication-Step1Installthenecessarydependencies).*
 
 The following package will help you generate a file with code representation of all available metrics and attributes in your GoodData Cloud:
 
@@ -35,26 +33,26 @@ npm i -D @gooddata/catalog-export
 You need to modify `package.json`, and add the following properties:
 
 ```bash
-    "gooddata": {
-        "hostname": "<your-gooddata-host>",
-        "workspaceId": "<your-workspace-id>",
-        "catalogOutput": "app/gooddata-export.ts",
-        "backend": "tiger"
-    }
+"gooddata": {
+    "hostname": "<your-gooddata-host>",
+    "workspaceId": "<your-workspace-id>",
+    "catalogOutput": "app/gooddata-export.ts",
+    "backend": "tiger"
+}
 ```
 
-The configuration is for the catalog-export tool that exports all available metrics and attributes to a single file that you can reference in your code.
+The configuration is for the `catalog-export` tool that exports all available metrics and attributes to a single file that you can reference in your code.
 
 ### Step 3: Add a new script to package.json
 
 ```bash
-    "scripts": {
-        "dev": "next dev",
-        "build": "next build",
-        "start": "next start",
-        "lint": "next lint",
-        "refresh-md": "gdc-catalog-export" <-- this is the new script you need to add!
-    },
+"scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "refresh-md": "gdc-catalog-export" <-- this is the new script you need to add!
+},
 ```
 
 ### Step 4: Add API token
@@ -63,7 +61,7 @@ The configuration is for the catalog-export tool that exports all available metr
 export TIGER_API_TOKEN=<your-api-token>
 ```
 
-*Note: more info on how to get API token is in the [documentation](https://www.gooddata.com/developers/cloud-native/doc/cloud/getting-started/create-api-token/)*
+*Note: more info on how to get API token is in the [documentation](https://www.gooddata.com/developers/cloud-native/doc/cloud/getting-started/create-api-token/).*
 
 ### Step 5: Configure CORS in GoodData
 
@@ -75,7 +73,7 @@ If your Next.js application runs on different domain that GoodData (which is the
 npm run refresh-md
 ```
 
-*The succesful result is: The result generated from workspace with id <your-workspace-id> is located at <your-project-folder>/app/gooddata-export.ts*
+The succesful result is: *The result generated from workspace with id <your-workspace-id> is located at <your-project-folder>/app/gooddata-export.ts*.
     
 ### Step 7: Add styles
 
